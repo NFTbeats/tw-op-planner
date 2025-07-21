@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TW OP Planner</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark');
+      localStorage.setItem('darkMode', document.body.classList.contains('dark'));
+    }
+
+    window.onload = function () {
+      if (localStorage.getItem('darkMode') === 'true') {
+        document.body.classList.add('dark');
+      }
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <div class="title-row">
+      <h2>Tribal Wars OP Planner</h2>
+      <img src="{{ url_for('static', filename='logo2.png') }}" alt="Logo" class="title-logo" />
+    </div>
+    <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
+    <form method="POST">
+      <label>World Speed:</label>
+      <input type="number" step="0.1" name="world_speed" required>
+
+      <label>Unit Speed:</label>
+      <input type="number" step="0.1" name="unit_speed" required>
+
+      <label>Unit Type:</label>
+      <select name="unit_type">
+        <option value="Ram">Ram</option>
+        <option value="Noble">Noble</option>
+        <option value="LC">LC</option>
+        <option value="MA">MA</option>
+      </select>
+
+      <label>Landing Date:</label>
+      <input type="date" name="landing_date" required>
+
+      <label for="landing_time">Landing Time:</label>
+      <input type="time" id="landing_time" name="landing_time" step="1" required>
+
+      <label>Attacker Villages:</label>
+      <textarea name="attacker_villages" rows="4" required></textarea>
+
+      <label>Target Villages:</label>
+      <textarea name="target_villages" rows="4" required></textarea>
+
+      <button type="submit">Calculate</button>
+    </form>
+
+    {% if result %}
+      <div class="result-box">
+        <h2>Send Times</h2>
+        {% for block in result.split('\n\n') %}
+          <div class="attack-box"><pre>{{ block }}</pre></div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</body>
+</html>
+
