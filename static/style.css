@@ -94,18 +94,18 @@ body.dark .result-box {
 }
 
 .attack-box {
-    background-color: #2a2a2a;
-    border: 1px solid #4caf50;
-    padding: 1rem;
+    background-color: #f4f4f4;
+    color: #333;
+    border: 1px solid #33cc33;
+    padding: 0.8rem;
     margin-bottom: 1rem;
-    border-radius: 4px;
-    color: #e0e0e0; /* Ensures readable text in light mode too */
+    border-radius: 6px;
     font-family: monospace;
 }
 
-body.light-mode .attack-box {
-  background-color: #f4f4f4;
-  color: #333;
+body.dark .attack-box {
+  background-color: #2a2a2a;
+  color: #e0e0e0;
   border: 1px solid #4caf50;
 }
 
@@ -131,4 +131,16 @@ body.light-mode .attack-box {
   gap: 0.4rem;  /* adjust spacing between label and checkbox */
   white-space: nowrap;  /* prevents the label from wrapping */
   margin: 0.5rem 0;
+}
+
+.simple-list {
+  background-color: #f9f9f9;
+  color: #111;
+  padding: 1rem;
+  border-radius: 4px;
+}
+
+body.dark .simple-list {
+  background-color: #1e1e1e;
+  color: #e0e0e0;
 }

@@ -65,12 +65,15 @@
     {% if result %}
       <div class="result-box">
         <h2>Send Times</h2>
-        {% for block in result.split('\n\n') %}
-          <div class="attack-box"><pre>{{ block }}</pre></div>
-        {% endfor %}
+        {% if simple_format %}
+          <pre class="simple-list">{{ result }}</pre>
+        {% else %}
+          {% for block in result.split('\n\n') %}
+            <div class="attack-box"><pre>{{ block }}</pre></div>
+          {% endfor %}
+        {% endif %}
       </div>
     {% endif %}
   </div>
 </body>
 </html>
-

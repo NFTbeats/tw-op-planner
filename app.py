@@ -58,7 +58,11 @@ def index():
 
         result = "\n\n".join(lines)
 
-    return render_template("index.html", result=result)
+    return render_template(
+        'index.html',
+        result=result,
+        simple_format=simple_format
+    )
     
 if __name__ == "__main__":
     app.run(debug=True)
