@@ -124,3 +124,11 @@ body.light-mode .attack-box {
 .title-logo {
   height: 100px; /* or whatever size fits nicely */
 }
+
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
