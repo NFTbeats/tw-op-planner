@@ -130,6 +130,5 @@ body.light-mode .attack-box {
   flex-direction: row-reverse; /* places checkbox to the right of label */
   align-items: center;
   justify-content: flex-end;
-  gap: 0.1rem;
-  margin: 0.5rem 0;
+  margin: 0.05rem 0;
 }
