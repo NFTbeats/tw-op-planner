@@ -33,6 +33,7 @@ def index():
         landing = datetime.strptime(f"{date} {time}", time_format)
         attackers = request.form.get("attacker_villages").strip().split("\n")
         targets = request.form.get("target_villages").strip().split("\n")
+        simple_format = request.form.get("simple_format") == "on"
 
         lines = []
         for atk in attackers:
@@ -42,14 +43,18 @@ def index():
                 travel_hours = calc_travel_time(ax, ay, tx, ty, unit_type, world_speed, unit_speed)
                 send_time = landing - timedelta(hours=travel_hours)
                 dist = tribal_wars_distance((ax, ay), (tx, ty))
-                lines.append(
-                    f"🚀 Attack Details\n"
-                    f"Attacker: {atk}\n"
-                    f"Target: {tgt}\n"
-                    f"Distance: {dist:.2f} fields\n"
-                    f"Unit Type: {unit_type}\n"
-                    f"Send At: {send_time.strftime('%Y-%m-%d %H:%M:%S')}\n"
-                )
+                
+                if simple_format:
+                    lines.append(f"{atk} → {tgt} | {send_time.strftime('%Y-%m-%d %H:%M:%S')}")
+                else:
+                    lines.append(
+                        f"🚀 Attack Details\n"
+                        f"Attacker: {atk}\n"
+                        f"Target: {tgt}\n"
+                        f"Distance: {dist:.2f} fields\n"
+                        f"Unit Type: {unit_type}\n"
+                        f"Send At: {send_time.strftime('%Y-%m-%d %H:%M:%S')}\n"
+                    )
 
         result = "\n\n".join(lines)
 
