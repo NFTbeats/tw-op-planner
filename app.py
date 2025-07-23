@@ -22,6 +22,7 @@ def calc_travel_time(ax, ay, tx, ty, unit_type, world_speed, unit_speed):
 
 @app.route("/", methods=["GET", "POST"])
 def index():
+    simple_format = False
     result = ""
     if request.method == "POST":
         unit_type = request.form.get("unit_type")
@@ -61,6 +62,7 @@ def index():
     return render_template(
         'index.html',
         result=result,
+        split_result=result.split('\n\n') if not simple_format and result else [],
         simple_format=simple_format
     )
     

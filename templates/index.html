@@ -68,7 +68,7 @@
         {% if simple_format %}
           <pre class="simple-list">{{ result }}</pre>
         {% else %}
-          {% for block in result.split('\n\n') %}
+          {% for block in split_result %}
             <div class="attack-box"><pre>{{ block }}</pre></div>
           {% endfor %}
         {% endif %}
